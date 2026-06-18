@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Museo virtual del Arte del Mate Burilado de Cochas, Huancayo, Perú." />
+  <title>Arte del Mate Burilado | Cochas, Huancayo</title>
+  <style>
+    :root {
+      --bg: #f7f1e3;
+      --bg-2: #efe2c5;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: #fff9ef;
+      --text: #2c1f16;
+      --muted: #6f5a48;
+      --primary: #8a5a2b;
+      --primary-dark: #623c19;
+      --gold: #caa24a;
+      --border: rgba(98, 60, 25, 0.14);
+      --shadow: 0 18px 45px rgba(91, 57, 24, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --transition: 280ms ease;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(202, 162, 74, 0.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(138, 90, 43, 0.12), transparent 32%),
+        linear-gradient(180deg, var(--bg), #fffdf8 65%, var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--container));
+      margin: 0 auto;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* HEADER */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 241, 227, 0.76);
+      border-bottom: 1px solid rgba(98, 60, 25, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--surface-strong);
+      color: var(--text);
+      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 0.85rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .nav button:hover,
+    .nav button:focus-visible {
+      background: rgba(138, 90, 43, 0.09);
+      color: var(--primary-dark);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .nav button.active {
+      background: linear-gradient(135deg, var(--primary), #a9723b);
+      color: white;
+      box-shadow: 0 10px 22px rgba(138, 90, 43, 0.22);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 78px);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        linear-gradient(180deg, rgba(44, 31, 22, 0.55), rgba(44, 31, 22, 0.65)),
+        url("https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(202, 162, 74, 0.3), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.1), transparent 18%),
+        radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.08), transparent 24%);
+      z-index: -1;
+    }
+
+    .hero-card {
+      width: min(100%, 860px);
+      padding: clamp(1.5rem, 3vw, 3rem);
+      border-radius: 34px;
+      background: rgba(255, 250, 241, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fffaf2;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      text-align: center;
+      backdrop-filter: blur(8px);
+      animation: floatUp 900ms ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(202, 162, 74, 0.18);
+      color: #fff3d0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      width: min(100%, 740px);
+      margin: 1rem auto 0;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.8;
+      color: rgba(255, 248, 233, 0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.95rem 1.3rem;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #e1c36e);
+      color: var(--primary-dark);
+      box-shadow: 0 14px 28px rgba(202, 162, 74, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fffaf2;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    /* SECTIONS */
+    main { position: relative; }
+
+    .page-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 420ms ease, transform 420ms ease;
+      padding: 4.25rem 0;
+    }
+
+    .page-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeIn 500ms ease both;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin: 0;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.7;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.4rem;
+    }
+
+    .text-card,
+    .glass-card {
+      padding: 1.4rem;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 0.38rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(202, 162, 74, 0.14);
+      color: var(--primary-dark);
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .figure-placeholder {
+      min-height: 100%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(44, 31, 22, 0.12), rgba(44, 31, 22, 0.45)),
+        url("https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      min-height: 360px;
+    }
+
+    .figure-placeholder .overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1rem 1.1rem;
+      color: white;
+      background: linear-gradient(180deg, transparent, rgba(44, 31, 22, 0.8));
+    }
+
+    /* TIMELINE */
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem 1rem 1rem 0.9rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .timeline-item:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      margin-top: 0.35rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--primary));
+      box-shadow: 0 0 0 6px rgba(202, 162, 74, 0.15);
+    }
+
+    .timeline-item h3 {
+      margin: 0;
+      font-size: 1.02rem;
+    }
+
+    .timeline-item p { margin: 0.35rem 0 0; color: var(--muted); line-height: 1.7; }
+
+    /* CARDS GRID */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      grid-column: span 4;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 54px rgba(91, 57, 24, 0.18);
+    }
+
+    .card-media {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(138, 90, 43, 0.25), rgba(202, 162, 74, 0.28));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 420ms ease;
+      cursor: zoom-in;
+    }
+
+    .card:hover .card-media img { transform: scale(1.05); }
+
+    .card-body { padding: 1rem 1rem 1.1rem; }
+
+    .card-body h3 { margin: 0 0 0.45rem; }
+    .card-body p { margin: 0; color: var(--muted); line-height: 1.7; }
+
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.42rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(138, 90, 43, 0.08);
+      color: var(--primary-dark);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .btn-link {
+      background: transparent;
+      border: 1px solid rgba(138, 90, 43, 0.2);
+      color: var(--primary-dark);
+      padding: 0.68rem 0.95rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+
+    .btn-link:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      grid-column: span 3;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      min-height: 220px;
+      box-shadow: var(--shadow);
+      cursor: zoom-in;
+      border: 1px solid var(--border);
+      isolation: isolate;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 420ms ease, filter 420ms ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: saturate(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 0.9rem 1rem;
+      color: white;
+      background: linear-gradient(180deg, transparent, rgba(44, 31, 22, 0.82));
+      font-size: 0.92rem;
+    }
+
+    /* LOCATION */
+    .map-wrap {
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      min-height: 420px;
+      background: #efe5d0;
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+      display: block;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .info-card {
+      grid-column: span 4;
+      padding: 1.2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .info-card h3 { margin-top: 0; margin-bottom: 0.4rem; }
+    .info-card p { margin: 0; color: var(--muted); line-height: 1.75; }
+
+    /* CONTACT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 1rem;
+    }
+
+    .contact-form {
+      padding: 1.25rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .field {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 0.45rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(98, 60, 25, 0.16);
+      border-radius: 16px;
+      background: #fffdf8;
+      padding: 0.95rem 1rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(138, 90, 43, 0.45);
+      box-shadow: 0 0 0 4px rgba(202, 162, 74, 0.15);
+    }
+
+    textarea { min-height: 160px; resize: vertical; }
+
+    .contact-side {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .mini-card {
+      padding: 1.15rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .mini-card h3 { margin-top: 0; }
+    .mini-card p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
+
+    /* FOOTER / UTILITIES */
+    .footer {
+      padding: 2rem 0 4.5rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .floating-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      color: white;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .floating-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 10, 7, 0.82);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      width: min(100%, 980px);
+      background: #fdf7ec;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      animation: popIn 240ms ease;
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      background: #1f1711;
+    }
+
+    .lightbox-caption {
+      padding: 0.9rem 1rem;
+      color: var(--text);
+      background: #fffaf2;
+      border-top: 1px solid var(--border);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.97); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1080px) {
+      .grid-2,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .card,
+      .gallery-item,
+      .info-card {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        flex-wrap: wrap;
+        padding: 0.75rem 0;
+      }
+
+      .nav-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .nav {
+        width: 100%;
+        display: none;
+        justify-content: flex-start;
+        padding-bottom: 0.4rem;
+      }
+
+      .nav.open { display: flex; }
+
+      .nav button {
+        width: 100%;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .card,
+      .gallery-item,
+      .info-card {
+        grid-column: span 12;
+      }
+
+      .hero {
+        min-height: 86vh;
+      }
+
+      .hero-card {
+        border-radius: 26px;
+      }
+    }
+
+    /* Helper spacing when sections are shown in a SPA */
+    .spacer-top { margin-top: 0.8rem; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio" data-nav="inicio" aria-label="Ir a inicio">
+        <span class="brand-mark">◌</span>
+        <span>
+          Arte del Mate Burilado
+          <small>Cochas, Huancayo</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+
+      <nav class="nav" id="navMenu" aria-label="Navegación principal">
+        <button class="active" data-target="inicio">Inicio</button>
+        <button data-target="historia">Historia</button>
+        <button data-target="videos">Videos</button>
+        <button data-target="galeria">Galería</button>
+        <button data-target="talleres">Talleres</button>
+        <button data-target="ubicacion">Ubicación</button>
+        <button data-target="contacto">Contacto</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / INICIO -->
+    <section class="hero page-section active" id="inicio" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-card">
+          <div class="eyebrow">Museo virtual • Cochas, Perú • Tradición viva</div>
+          <h1 id="hero-title">Arte del Mate Burilado</h1>
+          <p>
+            Un recorrido inmersivo por la historia, la técnica y el valor cultural del mate burilado de Cochas,
+            una expresión artística ancestral que transforma la calabaza en lienzo, memoria y orgullo andino.
+            <!-- Reemplazar este texto por una narrativa institucional o turística real. -->
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="exploreBtn">Explorar</button>
+            <button class="btn btn-secondary" data-target="historia">Conocer la historia</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="page-section" id="historia" aria-labelledby="historia-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2 id="historia-title">Historia y tradición</h2>
+            <p>Un espacio para contar el origen del mate burilado, su transmisión familiar y su presencia en la identidad de Cochas.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="text-card">
+            <span class="tag">Contexto cultural</span>
+            <h3>La memoria tallada en un fruto</h3>
+            <p class="muted">
+              El mate burilado es un arte popular donde cada línea grabada guarda símbolos, escenas costumbristas,
+              paisajes, flores y relatos de la vida andina. En Cochas, esta práctica se ha convertido en una herencia
+              artesanal que une técnica, paciencia y creatividad.
+              <!-- Reemplazar con texto histórico real y fuentes locales. -->
+            </p>
+            <p class="muted">
+              Las manos artesanas utilizan buriles, fuego y tintes para transformar cada pieza en una obra única.
+              El resultado no solo es decorativo: también comunica identidad, espiritualidad y orgullo comunitario.
+            </p>
+
+            <div class="timeline" aria-label="Línea de tiempo del mate burilado">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div>
+                  <h3>Origen ancestral</h3>
+                  <p>Uso tradicional del mate como utensilio doméstico y soporte artístico en los Andes.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div>
+                  <h3>Especialización en Cochas</h3>
+                  <p>Las familias artesanas perfeccionan diseños, técnicas de grabado y acabados personalizados.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div>
+                  <h3>Difusión actual</h3>
+                  <p>El mate burilado se exhibe en ferias, museos, festivales y espacios digitales de difusión cultural.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="figure-placeholder" aria-label="Imagen destacada de mate burilado">
+            <div class="overlay">
+              <strong>Imagen destacada</strong>
+              <div>Reemplazar por una fotografía real de un mate burilado de Cochas.</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="page-section" id="videos" aria-labelledby="videos-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2 id="videos-title">Videos</h2>
+            <p>Tarjetas listas para incrustar videos de YouTube, entrevistas, documentales o demostraciones de talleres.</p>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-media">
+              <!-- Reemplazar el iframe por un video real de YouTube. -->
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="Video de ejemplo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>Historia del arte</h3>
+              <p>Video de ejemplo para colocar un documental sobre el mate burilado y la tradición de Cochas.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY" title="Video de ejemplo 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>Proceso de elaboración</h3>
+              <p>Espacio para mostrar el burilado, quemado, pintado y acabado artesanal de cada pieza.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/jfKfPfyJRdk" title="Video de ejemplo 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h3>Testimonio de artesanos</h3>
+              <p>Reserva este bloque para entrevistas a maestros artesanos, familias y visitantes.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="page-section" id="galeria" aria-labelledby="galeria-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2 id="galeria-title">Galería fotográfica</h2>
+            <p>Haz clic en cualquier imagen para verla en grande. Reemplaza las miniaturas por fotos reales del distrito de Cochas.</p>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Reemplazar estas imágenes por fotografías reales. -->
+          <figure class="gallery-item" data-full="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1800&q=80" data-caption="Mate burilado con escena costumbrista">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80" alt="Mate burilado 1" />
+            <figcaption class="gallery-caption">Mate burilado con escena costumbrista</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=1800&q=80" data-caption="Detalle de burilado artesanal">
+            <img src="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80" alt="Mate burilado 2" />
+            <figcaption class="gallery-caption">Detalle de burilado artesanal</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=1800&q=80" data-caption="Técnica y herramientas del taller">
+            <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=900&q=80" alt="Mate burilado 3" />
+            <figcaption class="gallery-caption">Técnica y herramientas del taller</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="https://images.unsplash.com/photo-1507914372368-b1b6e0d1e9f9?auto=format&fit=crop&w=1800&q=80" data-caption="Piezas exhibidas en feria">
+            <img src="https://images.unsplash.com/photo-1507914372368-b1b6e0d1e9f9?auto=format&fit=crop&w=900&q=80" alt="Mate burilado 4" />
+            <figcaption class="gallery-caption">Piezas exhibidas en feria</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=80" data-caption="Familia artesana en proceso creativo">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80" alt="Mate burilado 5" />
+            <figcaption class="gallery-caption">Familia artesana en proceso creativo</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=1800&q=80" data-caption="Galería preparada para nuevas fotografías">
+            <img src="https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=900&q=80" alt="Mate burilado 6" />
+            <figcaption class="gallery-caption">Galería preparada para nuevas fotografías</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALLERES -->
+    <section class="page-section" id="talleres" aria-labelledby="talleres-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2 id="talleres-title">Talleres de Cochas</h2>
+            <p>Tarjetas preparadas para presentar talleres artesanales de Cochas Grande y Cochas Chico. Puedes agregar contacto, horarios y rutas.</p>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1496284045406-d8e5c9c6dd4c?auto=format&fit=crop&w=900&q=80" alt="Taller de Cochas Grande" />
+            </div>
+            <div class="card-body">
+              <span class="chip">Cochas Grande</span>
+              <h3>Taller artesanal Andino</h3>
+              <p>Espacio de ejemplo para describir un taller con tradición familiar, visitas guiadas y venta de piezas.</p>
+              <div class="card-actions">
+                <span class="muted">Huancayo, Junín</span>
+                <button class="btn-link">Ver más</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1524230572899-a752b383584f?auto=format&fit=crop&w=900&q=80" alt="Taller de Cochas Chico" />
+            </div>
+            <div class="card-body">
+              <span class="chip">Cochas Chico</span>
+              <h3>Casa taller de la memoria</h3>
+              <p>Reserva este espacio para un taller donde se muestre la elaboración, el diseño y el acabado final.</p>
+              <div class="card-actions">
+                <span class="muted">Huancayo, Junín</span>
+                <button class="btn-link">Ver más</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c46a?auto=format&fit=crop&w=900&q=80" alt="Taller adicional" />
+            </div>
+            <div class="card-body">
+              <span class="chip">Edición futura</span>
+              <h3>Nuevo taller por registrar</h3>
+              <p>Este bloque sirve para añadir más talleres, maestros artesanos y experiencias de visita.</p>
+              <div class="card-actions">
+                <span class="muted">Disponible</span>
+                <button class="btn-link">Ver más</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section class="page-section" id="ubicacion" aria-labelledby="ubicacion-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2 id="ubicacion-title">Ubicación</h2>
+            <p>Integra aquí Google Maps con la ubicación real de Cochas y los talleres que desees destacar.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="map-wrap">
+            <!-- Reemplazar este iframe por el mapa real de Google Maps. -->
+            <iframe
+              class="map-frame"
+              src="https://www.google.com/maps?q=Huancayo%20Peru&z=13&output=embed"
+              title="Mapa de referencia"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h3>Cochas Grande</h3>
+                <p>Zona artesanal principal. Agrega dirección exacta, horarios y teléfono de contacto.</p>
+              </article>
+              <article class="info-card">
+                <h3>Cochas Chico</h3>
+                <p>Espacio ideal para visitas culturales, demostraciones y venta de recuerdos artesanales.</p>
+              </article>
+              <article class="info-card">
+                <h3>Ruta cultural</h3>
+                <p>Coloca aquí una breve guía para llegar desde Huancayo o un punto de referencia turístico.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="page-section" id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2 id="contacto-title">Contacto</h2>
+            <p>Formulario moderno para consultas, reservas de visitas guiadas o pedidos especiales de mate burilado.</p>
+          </div>
+        </div>
+
+        <div class="contact-layout">
+          <form class="contact-form" id="contactForm">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="field">
+              <label for="correo">Correo</label>
+              <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required />
+            </div>
+            <div class="field">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Escribe tu consulta aquí..." required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+          </form>
+
+          <div class="contact-side">
+            <article class="mini-card">
+              <h3>Información de ejemplo</h3>
+              <p>
+                Reemplaza este contenido por teléfonos, correo institucional, redes sociales o datos de atención al visitante.
+              </p>
+            </article>
+            <article class="mini-card">
+              <h3>Recomendación visual</h3>
+              <p>
+                Puedes añadir una foto de portada del taller o una ilustración del proceso artesanal para reforzar la identidad del sitio.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container footer">
+      <p>© 2026 Arte del Mate Burilado de Cochas. Proyecto demostrativo para difusión cultural.</p>
+    </div>
+  </main>
+
+  <button class="floating-top" id="topBtn" aria-label="Volver al inicio">↑</button>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar imagen">✕</button>
+      <img id="lightboxImg" alt="Imagen ampliada" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    // SPA navigation
+    const navButtons = document.querySelectorAll('[data-target]');
+    const sections = document.querySelectorAll('.page-section');
+    const navMenu = document.getElementById('navMenu');
+    const navToggle = document.getElementById('navToggle');
+    const topBtn = document.getElementById('topBtn');
+    const exploreBtn = document.getElementById('exploreBtn');
+
+    function setActiveSection(id) {
+      sections.forEach(section => {
+        const isActive = section.id === id;
+        section.classList.toggle('active', isActive);
+        section.setAttribute('aria-hidden', String(!isActive));
+      });
+
+      navButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === id);
+      });
+
+      // Mover la vista al inicio de la sección seleccionada sin recarga.
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Cerrar menú en móviles.
+      navMenu.classList.remove('open');
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => setActiveSection(btn.dataset.target));
+    });
+
+    exploreBtn?.addEventListener('click', () => setActiveSection('historia'));
+
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    // Floating top button
+    window.addEventListener('scroll', () => {
+      topBtn.classList.toggle('visible', window.scrollY > 500);
+    });
+
+    topBtn.addEventListener('click', () => {
+      setActiveSection('inicio');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Lightbox gallery
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.dataset.full;
+        lightboxImg.alt = item.querySelector('img')?.alt || 'Imagen de galería';
+        lightboxCaption.textContent = item.dataset.caption || 'Galería';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Demo form handling
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Mensaje enviado. Reemplaza esta alerta con una integración real de formulario.');
+      e.target.reset();
+    });
+
+    // Accessibility: allow Enter/Space on brand shortcut
+    document.querySelector('.brand')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      setActiveSection('inicio');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Initial state: keep hero visible on load.
+    setActiveSection('inicio');
+  </script>
+</body>
+</html>
